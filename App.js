@@ -1,23 +1,13 @@
 import { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ScrollView,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
+
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  const [goalInput, setGoalInput] = useState("");
   const [goalList, setGoalList] = useState([]);
 
-  const textInputHandler = (e) => {
-    setGoalInput(e);
-  };
-
-  const buttonHandler = () => {
+  const addGoalHandler = (goalInput) => {
     setGoalList((newGoal) => [
       ...newGoal,
       { text: goalInput, id: Math.random().toString() },
@@ -26,14 +16,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Type Input"
-          onChangeText={textInputHandler}
-        />
-        <Button title="Press" onPress={buttonHandler} />
-      </View>
+      <GoalInput onAddGoal={addGoalHandler} />
       <View style={styles.listContainer}>
         {/* <ScrollView>
           {goalList.map((data, index) => (
@@ -45,13 +28,9 @@ export default function App() {
         <FlatList
           data={goalList}
           renderItem={(itemData) => {
-            return (
-              <View style={styles.goalItem}>
-                <Text style={styles.goalText}>{itemData.item.text}</Text>
-              </View>
-            );
+            return <GoalItem text={itemData.item.text} />;
           }}
-          keyExtractor={(item, index) => {
+          keyExtractor={(item) => {
             return item.id;
           }}
           alwaysBounceVertical={false}
@@ -86,14 +65,5 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 5,
     flexDirection: "column",
-  },
-  goalItem: {
-    padding: 5,
-    margin: 8,
-    borderRadius: 8,
-    backgroundColor: "#5E0ACC",
-  },
-  goalText: {
-    color: "#FFFFFF",
   },
 });

@@ -1,11 +1,26 @@
+import { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
+  const [goalInput, setGoalInput] = useState("");
+
+  const textInputHandler = (e) => {
+    setGoalInput(e);
+  };
+
+  const buttonHandler = () => {
+    console.log(goalInput);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder="Type Input" />
-        <Button title="Press" />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Type Input"
+          onChangeText={textInputHandler}
+        />
+        <Button title="Press" onPress={buttonHandler} />
       </View>
       <View style={styles.listContainer}>
         <Text>List of Goals</Text>

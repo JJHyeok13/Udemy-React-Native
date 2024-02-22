@@ -25,7 +25,9 @@ export default function App() {
       </View>
       <View style={styles.listContainer}>
         {goalList.map((data, index) => (
-          <Text key={index}>{data}</Text>
+          <View style={styles.goalItem} key={index}>
+            <Text style={styles.goalText}>{data}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -56,5 +58,14 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 5,
     flexDirection: "column",
+  },
+  goalItem: {
+    padding: 5,
+    margin: 3,
+    borderRadius: 8,
+    backgroundColor: "#5E0ACC",
+  },
+  goalText: {
+    color: "#FFFFFF",
   },
 });

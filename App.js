@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [goalInput, setGoalInput] = useState("");
@@ -24,11 +31,13 @@ export default function App() {
         <Button title="Press" onPress={buttonHandler} />
       </View>
       <View style={styles.listContainer}>
-        {goalList.map((data, index) => (
-          <View style={styles.goalItem} key={index}>
-            <Text style={styles.goalText}>{data}</Text>
-          </View>
-        ))}
+        <ScrollView>
+          {goalList.map((data, index) => (
+            <View style={styles.goalItem} key={index}>
+              <Text style={styles.goalText}>{data}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -37,7 +46,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
+    padding: 10,
     paddingHorizontal: 16,
   },
   inputContainer: {
@@ -45,7 +54,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottomWidth: 2,
+    marginBottom: 24,
+    borderBottomWidth: 1,
     borderBottomColor: "#CCCCCC",
   },
   textInput: {
@@ -61,7 +71,7 @@ const styles = StyleSheet.create({
   },
   goalItem: {
     padding: 5,
-    margin: 3,
+    margin: 8,
     borderRadius: 8,
     backgroundColor: "#5E0ACC",
   },

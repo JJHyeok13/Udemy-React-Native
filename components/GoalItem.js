@@ -5,6 +5,7 @@ const GoalItem = (props) => {
     <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
       <View style={styles.goalItem}>
         <Text style={styles.goalText}>{props.text}</Text>
+        <Text> 닉네임 이메일 설정 복구용 </Text>
       </View>
     </Pressable>
   );

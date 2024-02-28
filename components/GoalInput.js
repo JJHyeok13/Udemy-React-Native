@@ -20,7 +20,6 @@ const GoalInput = (props) => {
         placeholder="Type Input"
         value={goalInput}
         onChangeText={textInputHandler}
-        
       />
       <Button title="Press" onPress={addGoalHandler} />
     </View>
